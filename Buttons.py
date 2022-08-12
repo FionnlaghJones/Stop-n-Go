@@ -1,11 +1,28 @@
 from tkinter import *
 import time
-def click():
-   exec(open('StopWatch.py').read())
+def time_convert(sec):
+  mins = sec // 60
+  sec = sec % 60
+  hours = mins // 60
+  mins = mins % 60
+  print("Time Lapsed = {0}:{1}:{2}".format(int(hours),int(mins),sec))
+
+start_time = time.time()
+
+end_time = time.time()
+time_lapsed = end_time - start_time
+time_convert(time_lapsed)
+def onclick(args):
+   if args == 1:
+      start_time = time.time()
+   if args == 2:
+      end_time = time.time()
+
 print('Fuck')
 window = Tk()
-button = Button(window, text = 'Do it, Kass. \n You know you want to.')
-button.config(command=click) #performs callback of fcn
+button = Button(window, text = 'Start', command=lambda:onclick(1))
+button1 = Button(text = "Stop",command=lambda:onclick(2))
+#button.config(command=click) #performs callback of fcn
 button.config(font=('Ink Free', 60, 'bold'))
 button.config(bg='#fffb1f') #bg color/might be borked atm
 button.config(fg='#fffb1f') #text color
